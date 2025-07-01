@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ProductCard from "../modules/ProductCard";
+import ProductCard from "../modules/productCard.jsx";
 import products from "../Data/Catalog.jsx";
 import "../CSS/mainPage.css"
 

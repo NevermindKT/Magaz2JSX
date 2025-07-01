@@ -6,8 +6,8 @@ import ProductPage from "./pages/productPage.jsx";
 import OrderForm from "./pages/forms/orderForm.jsx";
 import RegistForm from "./pages/forms/registForm.jsx";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Header from "./modules/Header.jsx";
-import Footer from "./modules/Footer.jsx";
+import Header from "./modules/header.jsx";
+import Footer from "./modules/footer.jsx";
 
 function App() {
     return (
