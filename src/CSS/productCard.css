@@ -37,6 +37,7 @@
 }
 
 .product-button {
+    margin: 5px 0 5px 0;
     padding: 6px 12px;
     background-color: #444;
     color: white;

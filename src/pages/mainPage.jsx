@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../modules/productCard.jsx";
-import products from "../Data/Catalog.jsx";
+import products from "../Data/Products.jsx";
 import "../CSS/mainPage.css"
 
-function MainPage() {
+function MainPage({ addToCart }) {
     return (
         <main className="home-page">
             <div className="wrapper">
@@ -20,7 +20,7 @@ function MainPage() {
                         {!products || products.length === 0 ?
                             <p>Товары не найдены.</p> :
                             products.slice(0, 4).map((product) => (
-                                <ProductCard key={product.id} product={product}/>
+                                <ProductCard key={product.id} product={product} addToCart={addToCart} />
                             ))}
                     </div>
                 </section>

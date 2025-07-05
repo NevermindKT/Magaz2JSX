@@ -6,6 +6,7 @@ const products = [
         price: 1200,
         image: "/images/hoodie.jpg",
         description: "Уютная кофта на холодную погоду.",
+        quantity: 6,
     },
     {
         id: 2,
@@ -13,6 +14,7 @@ const products = [
         price: 3000,
         image: "/images/sneakers.jpg",
         description: "Спортивные кроссовки для повседневной носки.",
+        quantity: 4,
     },
     {
         id: 3,
@@ -20,6 +22,7 @@ const products = [
         price: 20000,
         image: "/images/phone.jpg",
         description: "Мощный и стильный смартфон.",
+        quantity: 1,
     },
     {
         id: 4,
@@ -27,6 +30,7 @@ const products = [
         price: 2500,
         image: "/images/headphones.jpg",
         description: "Качественный звук в стильном корпусе.",
+        quantity: 2,
     }
 ];
 
