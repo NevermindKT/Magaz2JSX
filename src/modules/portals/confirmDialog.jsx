@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../CSS/confirmDialog.css";
+import "../../CSS/confirmDialog.css";
 
 function ConfirmDialog({ message, onConfirm, onCancel }) {
     return ReactDOM.createPortal(

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import ConfirmDialog from "../modules/confirmDialog.jsx";
+import ConfirmDialog from "../../modules/portals/confirmDialog.jsx";
 
 function CartPage({products, addToCart, removeFromCart, decreaseFromCart, clearCart}) {
 

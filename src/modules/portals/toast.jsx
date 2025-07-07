@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import "../CSS/toast.css"
+import "../../CSS/toast.css"
 
 function ToastPortal({ message, duration = 3000 }) {
     const [visible, setVisible] = useState(true);

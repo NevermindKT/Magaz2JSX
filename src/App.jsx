@@ -1,64 +1,52 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {useReducer, useState} from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
-import Header from "./modules/header.jsx";
-import Footer from "./modules/footer.jsx";
+import Header from "./modules/alwaysOnScreen/header.jsx";
+import Footer from "./modules/alwaysOnScreen/footer.jsx";
 
-import MainPage from "./pages/mainPage.jsx";
-import CatalogPage from "./pages/catalogPage.jsx";
-import CartPage from "./pages/cartPage.jsx";
-import ProductPage from "./pages/productPage.jsx";
+import MainPage from "./htmlElements/pages/mainPage.jsx";
+import CatalogPage from "./htmlElements/pages/catalogPage.jsx";
+import CartPage from "./htmlElements/pages/cartPage.jsx";
+import ProductPage from "./htmlElements/pages/productPage.jsx";
 
-import OrderForm from "./pages/forms/orderForm.jsx";
-import RegistForm from "./pages/forms/registForm.jsx";
+import OrderForm from "./htmlElements/forms/orderForm.jsx";
+import RegistForm from "./htmlElements/forms/registForm.jsx";
 
-import ToastPortal from "./modules/toast.jsx";
+import ToastPortal from "./modules/portals/toast.jsx";
+
+import {cartReducer, initialCart} from "./modules/reducers/cartReducer.jsx";
 
 function App() {
-    const [cartItems, setCartItems] = useState([]);
     const [toastMessage, setToastMessage] = useState(null);
+    const [cartItems, dispatch] = useReducer(cartReducer, initialCart);
 
     const showToast = (message) => {
         setToastMessage(message);
         setTimeout(() => setToastMessage(null), 2000);
     };
 
-    const addToCart = (product) => {
-        setCartItems(prevItems => {
-            const found = prevItems.find(item => item.id === product.id);
-            if (found) {
-                return prevItems.map(item =>
-                    item.id === product.id
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                );
-            } else {
-                return [...prevItems, { ...product, quantity: 1 }];
-            }
-        });
+    const handleAddToCart = (product) => {
+        dispatch({ type: "ADD", product });
+        showToast(`${product.name} добавлен в корзину.`);
+    }
 
-        showToast(`${product.name} добавлен в корзину.`)
-    };
+    const handleRemoveFromCart = (id) => {
+        const item = cartItems.find(item => item.id === id)
+        dispatch({type: "REMOVE", id});
 
-    const removeFromCart = (id) => {
-        setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-    };
+        if (item) {
+        showToast(`${item.name} удален.`);
+        }
+    }
 
-    const decreaseFromCart = (id) => {
-        setCartItems(prevItems => {
-            return prevItems
-                .map(item =>
-                    item.id === id
-                        ? { ...item, quantity: item.quantity - 1 }
-                        : item
-                )
-                .filter(item => item.quantity > 0);
-        });
-    };
+    const hadleDecreseFromCart = (id) => {
+        dispatch({type: "DECREASE", id});
+    }
 
-    const clearCart = () => {
-        setCartItems([]);
-    };
+    const handleClearCart = () => {
+        dispatch({type: "CLEAR"});
+        showToast("Корзина была очищенна.");
+    }
 
     return (
         <BrowserRouter>
@@ -66,15 +54,15 @@ function App() {
 
             {typeof toastMessage === 'string' && <ToastPortal message={toastMessage} />}
             <Routes>
-                <Route path="/" element={<MainPage addToCart={addToCart} />} />
-                <Route path="/catalog" element={<CatalogPage addToCart={addToCart} />} />
+                <Route path="/" element={<MainPage addToCart={handleAddToCart} />} />
+                <Route path="/catalog" element={<CatalogPage addToCart={handleAddToCart} />} />
                 <Route path="/cart" element={
                     <CartPage
                         products={cartItems}
-                        addToCart={addToCart}
-                        removeFromCart={removeFromCart}
-                        decreaseFromCart={decreaseFromCart}
-                        clearCart={clearCart}
+                        addToCart={handleAddToCart}
+                        removeFromCart={handleRemoveFromCart}
+                        decreaseFromCart={hadleDecreseFromCart}
+                        clearCart={handleClearCart}
                     />
                 }/>
                 <Route path="/product/:id" element={<ProductPage />} />

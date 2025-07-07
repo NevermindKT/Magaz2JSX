@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ProductCard from "../modules/productCard.jsx";
-import products from "../Data/Products.jsx";
-import "../CSS/mainPage.css"
+import ProductCard from "../../modules/productCard.jsx";
+import products from "../../Data/Products.jsx";
+import "../../CSS/mainPage.css"
 
 function MainPage({ addToCart }) {
     return (

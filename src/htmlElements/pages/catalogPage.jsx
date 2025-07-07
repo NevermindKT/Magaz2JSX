@@ -1,7 +1,7 @@
 import React from "react";
-import ProductCard from "../modules/productCard.jsx";
-import products from "../Data/Products.jsx";
-import "../CSS/catalog.css"
+import ProductCard from "../../modules/productCard.jsx";
+import products from "../../Data/Products.jsx";
+import "../../CSS/catalog.css"
 
 function CatalogPage( { addToCart } ) {
 
