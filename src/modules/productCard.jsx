@@ -9,7 +9,7 @@ function ProductCard({ product, addToCart }) {
             <img src={product.image} alt={product.name} className="product-image" />
             <p className="product-price">{product.price} ₴</p>
             <Link to={`/product/${product.id}`} className="product-button">Подробнее</Link>
-            <button className="product-button" onClick={() => addToCart(product)}>Дбавить в корзину</button>
+            <button className="product-button" onClick={() => addToCart(product)}>Добавить в корзину</button>
         </div>
     );
 }
