@@ -73,7 +73,7 @@ function RegistForm() {
                     />
                     {errors.password && <p className="error">{errors.password}</p>}
 
-                    <button type="submit" disabled={submitting}>
+                    <button className="registration-button" type="submit" disabled={submitting}>
                         {submitting ? "Отправка..." : "Зарегистрироваться"}
                     </button>
                 </form>

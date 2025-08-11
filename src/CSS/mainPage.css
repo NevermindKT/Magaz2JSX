@@ -1,7 +1,9 @@
 
-.wrapper {
-    margin-left: 5%;
-    padding-left: 20px;
+.main-wrapper {
+    max-width: 1600px;
+    margin: auto;
+    min-height: 85vh;
+    padding: 20px;
 }
 
 .hero h1 {
@@ -10,10 +12,6 @@
 
 .logo {
     user-select: none;
-}
-
-.header-container .nav-links {
-    margin-right: 120px;
 }
 
 .product-grid {

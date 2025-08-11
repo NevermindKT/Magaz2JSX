@@ -2,12 +2,14 @@
     position: fixed;
     bottom: 0;
     padding-left: 20px;
-    width: 98%;
+    width: 100%;
 
     display: flex;
     justify-content: space-between;
+    background-color: #eeeeee;
 }
 
 .footer p {
+    margin-bottom: 15px;
     align-content: end;
 }

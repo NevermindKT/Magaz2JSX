@@ -6,7 +6,6 @@ import Footer from "./modules/alwaysOnScreen/footer.jsx";
 
 import MainPage from "./htmlElements/pages/mainPage.jsx";
 import CatalogPage from "./htmlElements/pages/catalogPage.jsx";
-import CartPage from "./htmlElements/pages/cartPage.jsx";
 import ProductPage from "./htmlElements/pages/productPage.jsx";
 
 import OrderForm from "./htmlElements/forms/orderForm.jsx";
@@ -15,10 +14,15 @@ import RegistForm from "./htmlElements/forms/registForm.jsx";
 import ToastPortal from "./modules/portals/toast.jsx";
 
 import {cartReducer, initialCart} from "./modules/reducers/cartReducer.jsx";
+import products from "./Data/Products.jsx";
 
 function App() {
     const [toastMessage, setToastMessage] = useState(null);
     const [cartItems, dispatch] = useReducer(cartReducer, initialCart);
+
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("all");
+    const categories = ["all", ...new Set(products.map(p => p.category))];
 
     const showToast = (message) => {
         setToastMessage(message);
@@ -50,21 +54,24 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Header />
+            <Header
+                products={cartItems}
+                addToCart={handleAddToCart}
+                removeFromCart={handleRemoveFromCart}
+                decreaseFromCart={hadleDecreseFromCart}
+                clearCart={handleClearCart}
+                search={search}
+                setSearch={setSearch}
+            />
 
             {typeof toastMessage === 'string' && <ToastPortal message={toastMessage} />}
             <Routes>
                 <Route path="/" element={<MainPage addToCart={handleAddToCart} />} />
-                <Route path="/catalog" element={<CatalogPage addToCart={handleAddToCart} />} />
-                <Route path="/cart" element={
-                    <CartPage
-                        products={cartItems}
-                        addToCart={handleAddToCart}
-                        removeFromCart={handleRemoveFromCart}
-                        decreaseFromCart={hadleDecreseFromCart}
-                        clearCart={handleClearCart}
-                    />
-                }/>
+                <Route path="/catalog" element={<CatalogPage
+                    addToCart={handleAddToCart}
+                    search={search}
+                    category={category}
+                />}/>
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/order" element={<OrderForm />} />
                 <Route path="/register" element={<RegistForm />} />

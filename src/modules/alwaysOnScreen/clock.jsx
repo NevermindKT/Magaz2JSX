@@ -7,7 +7,7 @@ const StyledClock = styled.div`
     border-radius: 10px;
     text-align: center;
     font-family: sans-serif;
-    transform: translateY(10px);
+    transform: translateY(10px) translateX(-30px);
 
     p {
         margin: 5px;

@@ -7,7 +7,7 @@ import "../../CSS/mainPage.css"
 function MainPage({ addToCart }) {
     return (
         <main className="home-page">
-            <div className="wrapper">
+            <div className="main-wrapper">
                 <section className="hero">
                     <h1>Добро пожаловать в наш магазин!</h1>
                     <p>Здесь вы найдете лучшие товары по отличной цене.</p>

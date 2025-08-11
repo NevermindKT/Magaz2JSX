@@ -1,0 +1,20 @@
+.sidebar-inner {
+    width: 220px;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.sidebar-inner ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar-inner li {
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.sidebar-inner li.active {
+    font-weight: bold;
+    color: blue;
+}
